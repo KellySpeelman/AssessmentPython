@@ -1,5 +1,5 @@
-num1 = 1.5
-num2 = 6.3
+num1 = float(input("typ een nummer: "))
+num2 = int(input("typ een nummer: "))
 
 sum = num1 + num2
 
