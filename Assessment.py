@@ -1,3 +1,4 @@
+import random
 def get_number():
     while True:
         try:
@@ -16,15 +17,24 @@ def create_List_of_Lists():
     for new_row in range(input_rows):
         input_int_list = create_List()
         list_of_lists.append(input_int_list)
+        print(input_int_list)
 
 
 def create_List():
-    while True:
-        try:
-            return list(map(int, input(
-                "Enter the integer elements of list(Space-Separated): ").strip().split()))[:input_rows]
-        except ValueError:
-            print("That was not a number")
+    list_of_numbers = []
+    for x in range(input_rows):
+        random_number = random.randrange(-100, 100)
+        list_of_numbers.append(random_number)
+
+    return list_of_numbers
+
+
+    # while True:
+    #     try:
+    #         return list(map(int, input(
+    #             "Enter the integer elements of list(Space-Separated): ").strip().split()))[:input_rows]
+    #     except ValueError:
+    #         print("That was not a number")
 
 
 def calculate_Diagonals():
