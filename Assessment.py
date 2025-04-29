@@ -1,4 +1,15 @@
 import random
+
+
+def start():
+    number_of_rows = get_number()
+    list_of_lists = create_list_of_lists(number_of_rows)
+    calculated_list = calculate_diagonals(number_of_rows, list_of_lists)
+    print('The sum diagonal1 = ', calculated_list[0])
+    print('The sum diagonal2 = ', calculated_list[1])
+    print('differens: ', calculate_difference(calculated_list))
+
+
 def get_number():
     while True:
         try:
@@ -7,22 +18,18 @@ def get_number():
             print("That was not a number")
 
 
-input_rows = get_number()
-list_of_lists = []
-diagonals1 = 0
-diagonals2 = 0
-
-def create_List_of_Lists():
-    global list_of_lists
-    for new_row in range(input_rows):
-        input_int_list = create_List()
+def create_list_of_lists(number_of_rows):
+    list_of_lists = []
+    for new_row in range(number_of_rows):
+        input_int_list = create_list(number_of_rows)
         list_of_lists.append(input_int_list)
         print(input_int_list)
+    return list_of_lists
 
 
-def create_List():
+def create_list(number_of_rows):
     list_of_numbers = []
-    for x in range(input_rows):
+    for x in range(number_of_rows):
         random_number = random.randrange(-100, 100)
         list_of_numbers.append(random_number)
 
@@ -32,29 +39,24 @@ def create_List():
     # while True:
     #     try:
     #         return list(map(int, input(
-    #             "Enter the integer elements of list(Space-Separated): ").strip().split()))[:input_rows]
+    #             "Enter the integer elements of list(Space-Separated): ").strip().split()))[:number_of_rows]
     #     except ValueError:
     #         print("That was not a number")
 
 
-def calculate_Diagonals():
-    global input_rows
-    global diagonals1
-    global diagonals2
+def calculate_diagonals(number_of_rows, list_of_lists):
+    left_to_right_diagonal = 0
+    right_to_left_diagonal = 0
     row_count = 0
     for row in list_of_lists:
-        diagonals1 += int(row[row_count])
-        diagonals2 += int(row[input_rows-row_count-1])
+        left_to_right_diagonal += int(row[row_count])
+        right_to_left_diagonal += int(row[number_of_rows-row_count-1])
         row_count += 1
+    return [left_to_right_diagonal, right_to_left_diagonal]
 
 
-def calculate_diffrens():
-    global diagonals1
-    global diagonals2
-    return diagonals1 - diagonals2
+def calculate_difference(calculated_list):
+    return calculated_list[0] - calculated_list[1]
 
-create_List_of_Lists()
-calculate_Diagonals()
-print('The sum diagonal1 = ', diagonals1)
-print('The sum diagonal2 = ', diagonals2)
-print('differens: ', calculate_diffrens())
+
+start()
