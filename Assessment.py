@@ -1,4 +1,4 @@
-import random
+# import random
 
 
 def start():
@@ -7,7 +7,7 @@ def start():
     calculated_list = calculate_diagonals(number_of_rows, list_of_lists)
     print('The sum diagonal1 = ', calculated_list[0])
     print('The sum diagonal2 = ', calculated_list[1])
-    print('differens: ', calculate_difference(calculated_list))
+    print('difference: ', calculate_difference(calculated_list))
 
 
 def get_number():
@@ -21,27 +21,24 @@ def get_number():
 def create_list_of_lists(number_of_rows):
     list_of_lists = []
     for new_row in range(number_of_rows):
-        input_int_list = create_list(number_of_rows)
+        input_int_list = create_list(number_of_rows, new_row)
         list_of_lists.append(input_int_list)
-        print(input_int_list)
+    print(list_of_lists)
     return list_of_lists
 
 
-def create_list(number_of_rows):
+def create_list(number_of_rows, new_row):
     list_of_numbers = []
     for x in range(number_of_rows):
-        random_number = random.randrange(-100, 100)
-        list_of_numbers.append(random_number)
-
+        while True:
+            try:
+                number = int(input(
+                    "Enter the integer for place {} in row {}: ".format(x+1, new_row+1)))
+                list_of_numbers.append(number)
+                break
+            except ValueError:
+                print("That was not a number")
     return list_of_numbers
-
-
-    # while True:
-    #     try:
-    #         return list(map(int, input(
-    #             "Enter the integer elements of list(Space-Separated): ").strip().split()))[:number_of_rows]
-    #     except ValueError:
-    #         print("That was not a number")
 
 
 def calculate_diagonals(number_of_rows, list_of_lists):
